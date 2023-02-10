@@ -6,7 +6,7 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -1092.0
-margin_bottom = -610.0
+margin_bottom = -773.0
 theme_type_variation = "ViewLabel"
 script = ExtResource( 2 )
 label_text = "A"
@@ -14,9 +14,9 @@ label_color = Color( 1, 1, 1, 1 )
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
-margin_top = 6.0
+margin_top = 4.0
 margin_right = 28.0
-margin_bottom = 24.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 28, 0 )
 theme_type_variation = "ViewLabel"
 custom_colors/font_color = Color( 1, 1, 1, 1 )
