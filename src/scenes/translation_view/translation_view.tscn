@@ -28,7 +28,7 @@ filters = PoolStringArray( "*.po ; Portable Object", "*.translation; Translation
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1115.0
-margin_bottom = 795.0
+margin_bottom = 715.0
 size_flags_horizontal = 3
 
 [node name="ToolbarContainer" type="HBoxContainer" parent="Layout"]
@@ -111,14 +111,14 @@ size_flags_vertical = 7
 unique_name_in_owner = true
 margin_top = 33.0
 margin_right = 1110.0
-margin_bottom = 790.0
+margin_bottom = 710.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Preview" type="TextEdit" parent="Layout/PreviewContainer"]
 unique_name_in_owner = true
 margin_right = 1110.0
-margin_bottom = 736.0
+margin_bottom = 656.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = "MessageText"
@@ -136,9 +136,9 @@ unique_name_in_owner = true
 script = ExtResource( 8 )
 
 [node name="StatusBar" type="HBoxContainer" parent="Layout/PreviewContainer"]
-margin_top = 740.0
+margin_top = 660.0
 margin_right = 1110.0
-margin_bottom = 757.0
+margin_bottom = 677.0
 
 [node name="SourceLabel" type="Label" parent="Layout/PreviewContainer/StatusBar"]
 unique_name_in_owner = true

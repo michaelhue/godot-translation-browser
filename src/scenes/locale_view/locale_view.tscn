@@ -20,7 +20,7 @@ script = ExtResource( 2 )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1115.0
-margin_bottom = 795.0
+margin_bottom = 715.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -38,7 +38,7 @@ selected = 0
 unique_name_in_owner = true
 margin_top = 32.0
 margin_right = 1110.0
-margin_bottom = 769.0
+margin_bottom = 689.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = "LocaleTree"
@@ -50,9 +50,9 @@ select_mode = 1
 
 [node name="StatsLabel" type="Label" parent="Layout"]
 unique_name_in_owner = true
-margin_top = 773.0
+margin_top = 693.0
 margin_right = 1110.0
-margin_bottom = 790.0
+margin_bottom = 710.0
 theme_type_variation = "StatusBar"
 text = "0 locales"
 valign = 1
