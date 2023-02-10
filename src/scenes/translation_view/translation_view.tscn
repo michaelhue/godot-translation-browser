@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scenes/translation_view/translation_view.gd" type="Script" id=1]
+[ext_resource path="res://src/scenes/message_text/message_text.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ui/icons/Translation.svg" type="Texture" id=3]
 [ext_resource path="res://src/ui/icons/Close.svg" type="Texture" id=4]
 [ext_resource path="res://src/ui/icons/Reload.svg" type="Texture" id=5]
 [ext_resource path="res://src/scenes/view_label/view_label.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/controls/locale_aware_control.gd" type="Script" id=8]
 
 [node name="TranslationView" type="PanelContainer"]
 anchor_right = 1.0
@@ -115,25 +115,8 @@ margin_bottom = 710.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Preview" type="TextEdit" parent="Layout/PreviewContainer"]
+[node name="MessageText" parent="Layout/PreviewContainer" instance=ExtResource( 2 )]
 unique_name_in_owner = true
-margin_right = 1110.0
-margin_bottom = 656.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_type_variation = "MessageText"
-readonly = true
-show_line_numbers = true
-highlight_all_occurrences = true
-shortcut_keys_enabled = false
-virtual_keyboard_enabled = false
-middle_mouse_paste_enabled = false
-smooth_scrolling = true
-wrap_enabled = true
-
-[node name="PreviewLocale" type="Node" parent="Layout/PreviewContainer/Preview"]
-unique_name_in_owner = true
-script = ExtResource( 8 )
 
 [node name="StatusBar" type="HBoxContainer" parent="Layout/PreviewContainer"]
 margin_top = 660.0

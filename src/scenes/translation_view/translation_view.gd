@@ -18,8 +18,7 @@ onready var manager := get_node(manager_path) as TranslationManager
 onready var file_dialog := get_node("%FileDialog") as FileDialog
 onready var view_label := get_node("%ViewLabel") as ViewLabel
 onready var preview_container := get_node("%PreviewContainer") as Container
-onready var preview := get_node("%Preview") as TextEdit
-onready var preview_locale := get_node("%PreviewLocale") as LocaleAwareControl
+onready var message_text := get_node("%MessageText") as TextEdit
 onready var path_container := get_node("%PathContainer") as Control
 onready var path_input := get_node("%PathInput") as LineEdit
 onready var load_button := get_node("%LoadButton") as Button
@@ -112,7 +111,7 @@ func update_preview() -> void:
 func _on_message_changed() -> void:
 	var message := state.message
 
-	preview.set_text(message)
+	message_text.set_text(message)
 
 	var chars := message.length()
 	var words := message.split(" ").size() if message.length() else 0
@@ -121,13 +120,13 @@ func _on_message_changed() -> void:
 	match state.message_source:
 		TranslationManager.MessageSource.LOCALE:
 			source_label.set_text("Translated: %s" % AppState.locale.to_upper())
-			preview_locale.set_locale(AppState.locale)
+			message_text.set_locale(AppState.locale)
 		TranslationManager.MessageSource.FALLBACK_LOCALE:
 			source_label.set_text("Fallback: %s" % AppState.fallback_locale.to_upper())
-			preview_locale.set_locale(AppState.fallback_locale)
+			message_text.set_locale(AppState.fallback_locale)
 		_:
 			source_label.set_text("Untranslated")
-			preview_locale.set_locale("")
+			message_text.set_locale("")
 
 	stats_label.set_text("Chars: %d    Words: %d    Lines: %d" % [chars, words, lines])
 

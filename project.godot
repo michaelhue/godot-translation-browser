@@ -19,11 +19,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/controls/item_list_navigator.gd"
 }, {
-"base": "Node",
-"class": "LocaleAwareControl",
-"language": "GDScript",
-"path": "res://src/controls/locale_aware_control.gd"
-}, {
 "base": "State",
 "class": "LocaleViewState",
 "language": "GDScript",
@@ -62,7 +57,6 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Analyzer": "",
 "ItemListNavigator": "",
-"LocaleAwareControl": "",
 "LocaleViewState": "",
 "MessageLoader": "",
 "MessageViewState": "",
