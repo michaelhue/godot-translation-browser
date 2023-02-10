@@ -4,7 +4,7 @@
 
 ## Requirements
 
-Godot 3.6
+Godot 3.5
 
 ## Usage
 
