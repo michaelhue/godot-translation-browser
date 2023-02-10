@@ -36,19 +36,9 @@ margin_right = 1110.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 0, 28 )
 
-[node name="ViewLabel" parent="Layout/ToolbarContainer" instance=ExtResource( 6 )]
-unique_name_in_owner = true
-modulate = Color( 0, 0, 0, 1 )
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 28.0
-margin_bottom = 29.0
-size_flags_vertical = 3
-
 [node name="LoadButton" type="Button" parent="Layout/ToolbarContainer"]
 unique_name_in_owner = true
-margin_left = 32.0
-margin_right = 569.0
+margin_right = 537.0
 margin_bottom = 29.0
 rect_min_size = Vector2( 0, 28 )
 hint_tooltip = "Select directory"
@@ -59,8 +49,8 @@ align = 0
 
 [node name="PathContainer" type="HBoxContainer" parent="Layout/ToolbarContainer"]
 unique_name_in_owner = true
-margin_left = 573.0
-margin_right = 1110.0
+margin_left = 541.0
+margin_right = 1078.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 
@@ -106,6 +96,16 @@ hint_tooltip = "Close translations"
 size_flags_vertical = 3
 icon = ExtResource( 4 )
 icon_align = 1
+
+[node name="ViewLabel" parent="Layout/ToolbarContainer" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1082.0
+margin_right = 1110.0
+margin_bottom = 29.0
+size_flags_horizontal = 4
+size_flags_vertical = 7
 
 [node name="PreviewContainer" type="VBoxContainer" parent="Layout"]
 unique_name_in_owner = true

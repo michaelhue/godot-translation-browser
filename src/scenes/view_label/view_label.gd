@@ -1,5 +1,5 @@
 tool
-extends PanelContainer
+extends CenterContainer
 
 
 export var label_text: String setget set_label_text, get_label_text
