@@ -7,6 +7,15 @@ func _ready() -> void:
 	get_tree().connect("screen_resized", self, "_on_screen_resized")
 
 	setup_window()
+	get_tree().paused = true
+
+
+func _notification(type: int) -> void:
+	match type:
+		NOTIFICATION_WM_FOCUS_OUT:
+			Engine.set_target_fps(30)
+		NOTIFICATION_WM_FOCUS_IN:
+			Engine.set_target_fps(0)
 
 
 func setup_window() -> void:
