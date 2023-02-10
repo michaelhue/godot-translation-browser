@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/scenes/locale_view/locale_view.gd" type="Script" id=1]
 [ext_resource path="res://src/scenes/locale_view/locale_view_state.gd" type="Script" id=2]
 [ext_resource path="res://src/ui/icons/B.svg" type="Texture" id=3]
 [ext_resource path="res://src/ui/icons/A.svg" type="Texture" id=4]
+[ext_resource path="res://src/ui/icons/AB.svg" type="Texture" id=5]
 
 [node name="LocaleView" type="PanelContainer"]
 anchor_right = 1.0
@@ -30,7 +31,7 @@ margin_bottom = 28.0
 rect_min_size = Vector2( 0, 28 )
 size_flags_horizontal = 3
 text = "All locales"
-items = [ "All locales", null, false, 0, null, "A locales", ExtResource( 4 ), false, 1, null, "B locales", ExtResource( 3 ), false, 2, null ]
+items = [ "All locales", null, false, 0, null, "Shared locales", ExtResource( 5 ), false, 1, null, "A locales", ExtResource( 4 ), false, 2, null, "B locales", ExtResource( 3 ), false, 3, null ]
 selected = 0
 
 [node name="Tree" type="Tree" parent="Layout"]

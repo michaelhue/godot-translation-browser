@@ -1,7 +1,7 @@
 extends PanelContainer
 
 
-enum Filter { ALL, A, B }
+enum Filter { ALL, SHARED, A, B }
 
 const META_LOCALE = "locale"
 
@@ -71,28 +71,43 @@ func _on_state_changed(property: String, value, _old) -> void:
 
 
 func _update_locales() -> void:
+	var a := manager_a.get_sorted_locales()
+	var b := manager_b.get_sorted_locales()
+
+	var combined := PoolStringArray()
+	combined.append_array(a)
+	combined.append_array(b)
+	combined.sort()
+
 	var all := PoolStringArray()
-	var active := PoolStringArray()
+	var shared := PoolStringArray()
 
-	for locale in manager_a.get_sorted_locales():
+	for locale in combined:
 		if not all.has(locale):
 			all.append(locale)
 
-		if state.filter in [Filter.ALL, Filter.A] and not active.has(locale):
-			active.append(locale)
+		if  not shared.has(locale) and a.has(locale) and b.has(locale):
+			shared.append(locale)
 
-	for locale in manager_b.get_sorted_locales():
-		if not all.has(locale):
-			all.append(locale)
+	var active := all
 
-		if state.filter in [Filter.ALL, Filter.B] and not active.has(locale):
-			active.append(locale)
-
-	option_button.set_item_disabled(Filter.A, manager_a.get_locales().empty())
-	option_button.set_item_disabled(Filter.B, manager_b.get_locales().empty())
+	match state.filter:
+		Filter.SHARED:
+			active = shared
+		Filter.A:
+			active = a
+		Filter.B:
+			active = b
 
 	state.set_locales(all)
 	state.set_active_locales(active)
+
+	option_button.set_item_disabled(Filter.SHARED, shared.empty())
+	option_button.set_item_disabled(Filter.A, a.empty())
+	option_button.set_item_disabled(Filter.B, b.empty())
+
+	if option_button.is_item_disabled(state.filter):
+		state.set_filter(Filter.ALL)
 
 
 func _update_items() -> void:
@@ -104,29 +119,16 @@ func _update_items() -> void:
 		var locale := state.active_locales[i] as String
 		var is_fallback := locale == AppState.fallback_locale
 
-		var icon: Texture
-		var a_locale := manager_a.has_locale(locale)
-		var b_locale := manager_b.has_locale(locale)
-
-		if a_locale and b_locale:
-			icon = get_icon("ab")
-		elif a_locale:
-			icon = get_icon("a")
-		elif b_locale:
-			icon = get_icon("b")
-
 		var item := tree.create_item(root)
 		item.set_meta(META_LOCALE, locale)
 
 		item.set_text(0, locale.to_upper())
-		item.set_icon(0, icon)
 		item.set_tooltip(0, TranslationServer.get_locale_name(locale))
 
 		item.set_cell_mode(1, TreeItem.CELL_MODE_CHECK)
 		item.set_checked(1, is_fallback)
 		item.set_editable(1, not is_fallback)
 		item.set_tooltip(1, "Fallback locale" if is_fallback else "Set as fallback locale")
-
 
 	stats_label.text = "%d locales" % state.active_locales.size()
 
