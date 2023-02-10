@@ -77,7 +77,7 @@ placeholder_text = "No source for locale"
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="FilesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer"]
+[node name="SourcesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer"]
 unique_name_in_owner = true
 margin_left = 405.0
 margin_right = 473.0

@@ -114,6 +114,15 @@ func get_files() -> PoolStringArray:
 	return files
 
 
+## Get the [Translation] resource the specified source file [code]path[/code].
+func get_file_translation(path: String):
+	for res in get_translations():
+		if res.get_meta(TranslationLoader.META_SOURCE_FILE) == path:
+			return res
+
+	return null
+
+
 ## Get the [enum MessageSource] type considering the given [code]message_id[/code],
 ## [code]locale[/code] and optional [code]fallback_locale[/code].
 func get_message_source(message_id: String, locale: String, fallback_locale := "") -> int:

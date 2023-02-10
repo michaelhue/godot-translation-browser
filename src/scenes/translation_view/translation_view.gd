@@ -24,7 +24,7 @@ onready var path_container := get_node("%PathContainer") as Control
 onready var path_input := get_node("%PathInput") as LineEdit
 onready var load_button := get_node("%LoadButton") as Button
 onready var clear_button := get_node("%ClearButton") as Button
-onready var files_button := get_node("%FilesButton") as MenuButton
+onready var sources_button := get_node("%SourcesButton") as MenuButton
 onready var source_label := get_node("%SourceLabel") as Label
 onready var stats_label := get_node("%StatsLabel") as Label
 
@@ -35,6 +35,8 @@ func _ready() -> void:
 
 	view_label.set_label_text(label)
 	view_label.set_label_color(label_color)
+
+	sources_button.get_popup().connect("index_pressed", self, "_on_source_button_index_pressed")
 
 	reset()
 	_on_message_changed()
@@ -88,7 +90,7 @@ func update_files() -> void:
 	load_button.visible = false
 
 	update_preview()
-	_update_files_list()
+	_update_sources_list()
 
 
 func update_preview() -> void:
@@ -140,26 +142,24 @@ func _on_translation_changed() -> void:
 	path_input.set_text(path)
 	path_input.caret_position = path.length() - 1
 
-	_update_files_list()
+	_update_sources_list()
 
 
-func _update_files_list() -> void:
+func _update_sources_list() -> void:
 	var files := manager.get_files()
-	var popup := files_button.get_popup()
+	var popup := sources_button.get_popup()
 
 	popup.clear()
-	files_button.text = "%d sources" % files.size()
-	files_button.visible = files.size() > 1
+
+	sources_button.text = "%d sources" % files.size()
+	sources_button.visible = files.size() > 1
 
 	for i in range(files.size()):
-		var file: String = files[i]
+		var file := files[i] as String
 
 		popup.add_item(file)
-		popup.set_item_disabled(i, true)
-
-		if file == path_input.text:
-			popup.set_item_as_radio_checkable(i, true)
-			popup.set_item_checked(i, true)
+		popup.set_item_as_radio_checkable(i, true)
+		popup.set_item_checked(i, file == path_input.text)
 
 
 func _on_load_pressed() -> void:
@@ -180,3 +180,11 @@ func _on_reload_pressed() -> void:
 
 func _on_clear_pressed() -> void:
 	state.set_file_paths(PoolStringArray())
+
+
+func _on_source_button_index_pressed(index: int) -> void:
+	var files := manager.get_files()
+	var translation: Translation = manager.get_file_translation(files[index])
+
+	if translation:
+		AppState.set_locale(translation.locale)
