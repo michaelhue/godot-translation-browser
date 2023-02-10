@@ -65,9 +65,22 @@ func get_locales() -> PoolStringArray:
 	return locales
 
 
+## Get the list of unique loaded translation locales.
+func get_unique_locales() -> PoolStringArray:
+	var unique = PoolStringArray()
+
+	for locale in get_locales():
+		if unique.has(locale):
+			continue
+
+		unique.append(locale)
+
+	return unique
+
+
 ## Get the sorted list of loaded translation locales.
 func get_sorted_locales() -> PoolStringArray:
-	var list := PoolStringArray(get_locales())
+	var list := get_unique_locales()
 	list.sort()
 	return list
 
