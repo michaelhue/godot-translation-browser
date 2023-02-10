@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/icons/StatusUnknown.svg" type="Texture" id=1]
+[ext_resource path="res://src/scenes/status_label/status_label.gd" type="Script" id=2]
+
+[node name="StatusLabel" type="HBoxContainer"]
+margin_right = 65.0
+margin_bottom = 25.0
+size_flags_vertical = 5
+theme_type_variation = "StatusLabel"
+custom_constants/separation = 1
+script = ExtResource( 2 )
+status = -1
+
+[node name="Icon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+margin_top = 4.0
+margin_right = 16.0
+margin_bottom = 20.0
+size_flags_vertical = 4
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+margin_left = 17.0
+margin_right = 84.0
+margin_bottom = 25.0
+text = "Unknown"
+valign = 1
+max_lines_visible = 1

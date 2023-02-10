@@ -1,0 +1,188 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/scenes/translation_view/translation_view.gd" type="Script" id=1]
+[ext_resource path="res://src/scenes/file_type/file_type.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ui/icons/Translation.svg" type="Texture" id=3]
+[ext_resource path="res://src/ui/icons/Close.svg" type="Texture" id=4]
+[ext_resource path="res://src/ui/icons/Reload.svg" type="Texture" id=5]
+[ext_resource path="res://src/scenes/view_label/view_label.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/controls/locale_aware_control.gd" type="Script" id=8]
+
+[node name="TranslationView" type="PanelContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="FileDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+margin_right = 315.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 400, 140 )
+popup_exclusive = true
+window_title = "Open a File or Directory"
+dialog_text = "Select a single CSV file, multiple PO files or a directory with PO files."
+mode = 3
+filters = PoolStringArray( "*.csv ; CSV", "*.po ; PO" )
+
+[node name="Layout" type="VBoxContainer" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1115.0
+margin_bottom = 795.0
+size_flags_horizontal = 3
+
+[node name="ToolbarContainer" type="HBoxContainer" parent="Layout"]
+margin_right = 1110.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 28 )
+
+[node name="ViewLabel" parent="Layout/ToolbarContainer" instance=ExtResource( 6 )]
+unique_name_in_owner = true
+modulate = Color( 0, 0, 0, 1 )
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 28.0
+margin_bottom = 29.0
+size_flags_vertical = 3
+
+[node name="LoadButton" type="Button" parent="Layout/ToolbarContainer"]
+unique_name_in_owner = true
+margin_left = 32.0
+margin_right = 569.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 0, 28 )
+hint_tooltip = "Select directory"
+size_flags_horizontal = 3
+text = "Load translations"
+icon = ExtResource( 3 )
+align = 0
+
+[node name="PathContainer" type="HBoxContainer" parent="Layout/ToolbarContainer"]
+unique_name_in_owner = true
+margin_left = 573.0
+margin_right = 1110.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+
+[node name="SourceContainer" type="HBoxContainer" parent="Layout/ToolbarContainer/PathContainer"]
+margin_right = 473.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+custom_constants/separation = -1
+
+[node name="FileType" parent="Layout/ToolbarContainer/PathContainer/SourceContainer" instance=ExtResource( 2 )]
+unique_name_in_owner = true
+margin_bottom = 29.0
+
+[node name="PathInput" type="LineEdit" parent="Layout/ToolbarContainer/PathContainer/SourceContainer"]
+unique_name_in_owner = true
+margin_left = 39.0
+margin_right = 473.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+editable = false
+virtual_keyboard_enabled = false
+clear_button_enabled = true
+placeholder_text = "No source for locale"
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="FilesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer/SourceContainer/PathInput"]
+unique_name_in_owner = true
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -69.0
+margin_right = -1.0
+grow_horizontal = 0
+hint_tooltip = "Show loaded files"
+theme_type_variation = "StatusBar"
+text = "2 sources"
+
+[node name="ReloadButton" type="ToolButton" parent="Layout/ToolbarContainer/PathContainer"]
+unique_name_in_owner = true
+margin_left = 477.0
+margin_right = 505.0
+margin_bottom = 29.0
+hint_tooltip = "Reload translations"
+size_flags_vertical = 3
+icon = ExtResource( 5 )
+icon_align = 1
+
+[node name="ClearButton" type="ToolButton" parent="Layout/ToolbarContainer/PathContainer"]
+unique_name_in_owner = true
+margin_left = 509.0
+margin_right = 537.0
+margin_bottom = 29.0
+hint_tooltip = "Close translations"
+size_flags_vertical = 3
+icon = ExtResource( 4 )
+icon_align = 1
+
+[node name="PreviewContainer" type="VBoxContainer" parent="Layout"]
+unique_name_in_owner = true
+margin_top = 33.0
+margin_right = 1110.0
+margin_bottom = 790.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Preview" type="TextEdit" parent="Layout/PreviewContainer"]
+unique_name_in_owner = true
+margin_right = 1110.0
+margin_bottom = 736.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = "MessageText"
+readonly = true
+show_line_numbers = true
+highlight_all_occurrences = true
+shortcut_keys_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+smooth_scrolling = true
+wrap_enabled = true
+
+[node name="PreviewLocale" type="Node" parent="Layout/PreviewContainer/Preview"]
+unique_name_in_owner = true
+script = ExtResource( 8 )
+
+[node name="StatusBar" type="HBoxContainer" parent="Layout/PreviewContainer"]
+margin_top = 740.0
+margin_right = 1110.0
+margin_bottom = 757.0
+
+[node name="SourceLabel" type="Label" parent="Layout/PreviewContainer/StatusBar"]
+unique_name_in_owner = true
+margin_right = 69.0
+margin_bottom = 17.0
+theme_type_variation = "StatusBar"
+text = "Translated"
+valign = 1
+max_lines_visible = 1
+
+[node name="Spacer" type="Control" parent="Layout/PreviewContainer/StatusBar"]
+margin_left = 73.0
+margin_right = 934.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+
+[node name="StatsLabel" type="Label" parent="Layout/PreviewContainer/StatusBar"]
+unique_name_in_owner = true
+margin_left = 938.0
+margin_right = 1110.0
+margin_bottom = 17.0
+theme_type_variation = "StatusBar"
+text = "Chars: 0    Words: 0    Lines: 0"
+valign = 1
+max_lines_visible = 1
+
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_dialog_file_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_dialog_file_selected"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_dialog_files_selected"]
+[connection signal="pressed" from="Layout/ToolbarContainer/LoadButton" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="Layout/ToolbarContainer/PathContainer/ReloadButton" to="." method="_on_reload_pressed"]
+[connection signal="pressed" from="Layout/ToolbarContainer/PathContainer/ClearButton" to="." method="_on_clear_pressed"]

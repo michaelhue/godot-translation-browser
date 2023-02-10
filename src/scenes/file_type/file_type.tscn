@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/scenes/file_type/file_type.gd" type="Script" id=1]
+
+[node name="FileType" type="PanelContainer"]
+margin_right = 40.0
+margin_bottom = 27.0
+size_flags_horizontal = 5
+size_flags_vertical = 7
+theme_type_variation = "FileType"
+script = ExtResource( 1 )
+text = "EXT"
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+margin_left = 3.0
+margin_top = 2.0
+margin_right = 37.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 34, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_type_variation = "FileType"
+text = "EXT"
+align = 1
+valign = 1
+uppercase = true
+max_lines_visible = 1

@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/ui/icons/Switch.svg" type="Texture" id=1]
+[ext_resource path="res://src/ui/icons/Eye.svg" type="Texture" id=2]
+[ext_resource path="res://src/scenes/status_label/status_label.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/scenes/translation_separator/translation_separator.gd" type="Script" id=4]
+
+[node name="TranslationSeparator" type="MarginContainer"]
+anchor_right = 1.0
+margin_bottom = 25.0
+custom_constants/margin_right = 2
+custom_constants/margin_left = 6
+script = ExtResource( 4 )
+
+[node name="Layout" type="HBoxContainer" parent="."]
+margin_left = 6.0
+margin_right = 1118.0
+margin_bottom = 25.0
+custom_constants/separation = 12
+
+[node name="LabelGroup" type="HBoxContainer" parent="Layout"]
+margin_right = 84.0
+margin_bottom = 25.0
+custom_constants/separation = 0
+
+[node name="StatusLabel" parent="Layout/LabelGroup" instance=ExtResource( 3 )]
+unique_name_in_owner = true
+margin_right = 84.0
+success_text = "Match"
+warning_text = "Mismatch"
+
+[node name="Separator" type="HSeparator" parent="Layout"]
+margin_left = 96.0
+margin_right = 936.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 5
+
+[node name="ButtonGroup" type="HBoxContainer" parent="Layout"]
+margin_left = 948.0
+margin_right = 1112.0
+margin_bottom = 25.0
+
+[node name="SwitchButton" type="Button" parent="Layout/ButtonGroup"]
+margin_right = 74.0
+margin_bottom = 25.0
+hint_tooltip = "Switch A/B translations"
+text = "Switch"
+icon = ExtResource( 1 )
+flat = true
+
+[node name="AnalyzerButton" type="Button" parent="Layout/ButtonGroup"]
+unique_name_in_owner = true
+margin_left = 78.0
+margin_right = 164.0
+margin_bottom = 25.0
+hint_tooltip = "Toggle Analyzer panel"
+toggle_mode = true
+text = "Analyzer"
+icon = ExtResource( 2 )
+flat = true
+
+[connection signal="pressed" from="Layout/ButtonGroup/SwitchButton" to="." method="_on_switch_pressed"]
+[connection signal="pressed" from="Layout/ButtonGroup/AnalyzerButton" to="." method="_on_inspector_pressed"]
