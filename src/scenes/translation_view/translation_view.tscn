@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/scenes/translation_view/translation_view.gd" type="Script" id=1]
-[ext_resource path="res://src/scenes/file_type/file_type.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ui/icons/Translation.svg" type="Texture" id=3]
 [ext_resource path="res://src/ui/icons/Close.svg" type="Texture" id=4]
 [ext_resource path="res://src/ui/icons/Reload.svg" type="Texture" id=5]
@@ -22,9 +21,8 @@ margin_bottom = 130.0
 rect_min_size = Vector2( 400, 140 )
 popup_exclusive = true
 window_title = "Open a File or Directory"
-dialog_text = "Select a single CSV file, multiple PO files or a directory with PO files."
 mode = 3
-filters = PoolStringArray( "*.csv ; CSV", "*.po ; PO" )
+filters = PoolStringArray( "*.po ; Portable Object", "*.translation; Translation" )
 
 [node name="Layout" type="VBoxContainer" parent="."]
 margin_left = 5.0
@@ -66,20 +64,9 @@ margin_right = 1110.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 
-[node name="SourceContainer" type="HBoxContainer" parent="Layout/ToolbarContainer/PathContainer"]
-margin_right = 473.0
-margin_bottom = 29.0
-size_flags_horizontal = 3
-custom_constants/separation = -1
-
-[node name="FileType" parent="Layout/ToolbarContainer/PathContainer/SourceContainer" instance=ExtResource( 2 )]
+[node name="PathInput" type="LineEdit" parent="Layout/ToolbarContainer/PathContainer"]
 unique_name_in_owner = true
-margin_bottom = 29.0
-
-[node name="PathInput" type="LineEdit" parent="Layout/ToolbarContainer/PathContainer/SourceContainer"]
-unique_name_in_owner = true
-margin_left = 39.0
-margin_right = 473.0
+margin_right = 401.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -90,13 +77,11 @@ placeholder_text = "No source for locale"
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="FilesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer/SourceContainer/PathInput"]
+[node name="FilesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer"]
 unique_name_in_owner = true
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -69.0
-margin_right = -1.0
+margin_left = 405.0
+margin_right = 473.0
+margin_bottom = 29.0
 grow_horizontal = 0
 hint_tooltip = "Show loaded files"
 theme_type_variation = "StatusBar"

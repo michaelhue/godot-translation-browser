@@ -51,8 +51,8 @@ func empty() -> bool:
 
 ## Loaded all translations from the given [code]path[/code]. See
 ## [TranslationLoader] for details on supported files.
-func load_all(paths: PoolStringArray) -> void:
-	loader.load_all(paths)
+func load_all(paths: PoolStringArray) -> int:
+	return loader.load_all(paths)
 
 
 ## Check if the given [code]locale[/locale] is loaded.
@@ -115,20 +115,10 @@ func get_message_source(message_id: String, locale: String, fallback_locale := "
 	return MessageSource.NONE
 
 
-## Get the list of message IDs for the given [code]locale[/code].
-func get_message_ids(locale: String) -> PoolStringArray:
-	var translation := get_translation(locale)
-
-	if translation:
-		return translation.get_message_list()
-
-	return PoolStringArray()
-
-
 ## Check if the [Translation] for [code]locale[/code] contains the give
 ## [code]message_id[/code].
 func has_message(message_id: String, locale: String) -> bool:
-	return get_message_ids(locale).has(message_id)
+	return not get_message(message_id, locale).empty()
 
 
 ## Get the message matching the given [code]message_id[/code] and
@@ -146,12 +136,14 @@ func get_message(message_id: String, locale: String) -> String:
 ## no message was found for the given [code]locale[/code] or optional
 ## [code]fallback_locale[/code], the [code]message_id[/code] will be returned.
 func translate(message_id: String, locale: String, fallback_locale := "") -> String:
-	var source := get_message_source(message_id, locale, fallback_locale)
+	var translation := get_message(message_id, locale)
 
-	match source:
-		MessageSource.LOCALE:
-			return get_message(message_id, locale)
-		MessageSource.FALLBACK_LOCALE:
-			return get_message(message_id, fallback_locale)
-		_:
-			return message_id
+	if not translation.empty():
+		return translation
+
+	if not fallback_locale.empty():
+		var fallback_translation = get_message(message_id, fallback_locale)
+		if not fallback_translation.empty():
+			return fallback_translation
+
+	return message_id

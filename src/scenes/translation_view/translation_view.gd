@@ -2,7 +2,6 @@ extends PanelContainer
 
 signal updated()
 
-const FileType = preload("res://src/scenes/file_type/file_type.gd")
 const ViewLabel = preload("res://src/scenes/view_label/view_label.gd")
 
 export var state_path: NodePath
@@ -23,7 +22,6 @@ onready var preview := get_node("%Preview") as TextEdit
 onready var preview_locale := get_node("%PreviewLocale") as LocaleAwareControl
 onready var path_container := get_node("%PathContainer") as Control
 onready var path_input := get_node("%PathInput") as LineEdit
-onready var file_type := get_node("%FileType") as FileType
 onready var load_button := get_node("%LoadButton") as Button
 onready var clear_button := get_node("%ClearButton") as Button
 onready var files_button := get_node("%FilesButton") as MenuButton
@@ -78,7 +76,11 @@ func update_files() -> void:
 	if state.file_paths.empty():
 		return
 
-	manager.load_all(state.file_paths)
+	var error = manager.load_all(state.file_paths)
+
+	if error != OK:
+		state.set_file_paths(PoolStringArray())
+		return
 
 	size_flags_stretch_ratio = 1
 	preview_container.visible = true
@@ -130,15 +132,11 @@ func _on_message_changed() -> void:
 
 func _on_translation_changed() -> void:
 	var translation := state.translation
-	var ext := "N/A"
 	var path := ""
 
 	if translation is Translation:
 		path = translation.get_meta(TranslationLoader.META_SOURCE_FILE)
-		ext = path.get_extension()
 
-	file_type.set_text(ext)
-	file_type.set_visible(not ext.empty())
 	path_input.set_text(path)
 	path_input.caret_position = path.length() - 1
 
