@@ -9,7 +9,7 @@ signal changed(property, new_value, old_value)
 
 func _ready() -> void:
 	if not get_persisted_properties().empty():
-		_state_manager().call_deferred("load_state", self)
+		_state_manager().call("load_state", self)
 
 
 ## Override this method to return the property names that should be persisted.
