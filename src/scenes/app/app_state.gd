@@ -1,5 +1,6 @@
 extends State
 
+var window_size: Vector2
 var locale: String
 var fallback_locale: String
 var message_id: String
@@ -12,7 +13,11 @@ func _ready() -> void:
 
 
 func _persisted_properties() -> Array:
-	return ["locale", "fallback_locale", "message_id", "show_analyzer"]
+	return ["window_size", "locale", "fallback_locale", "message_id", "show_analyzer"]
+
+
+func set_window_size(new_size: Vector2) -> void:
+	set_state("window_size", new_size)
 
 
 func set_locale(new_locale: String) -> void:
