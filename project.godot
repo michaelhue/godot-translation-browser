@@ -91,7 +91,7 @@ gdscript/warnings/return_value_discarded=false
 [display]
 
 window/size/width=1120
-window/size/height=800
+window/size/height=720
 window/energy_saving/keep_screen_on=false
 
 [global]
