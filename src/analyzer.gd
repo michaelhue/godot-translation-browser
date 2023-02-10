@@ -54,7 +54,7 @@ func is_working() -> bool:
 	return thread.is_alive()
 
 
-func _analyze_thread(request: Request):
+func _analyze_thread(request: Request) -> void:
 	var msgids := request.msgids
 	var fallback_locale := request.fallback_locale
 	var a := request.a
