@@ -1,7 +1,7 @@
 extends PanelContainer
 
 
-enum Filter { ALL, SHARED, A, B }
+enum Filter { ALL, A, B, SHARED }
 
 const META_LOCALE = "locale"
 
