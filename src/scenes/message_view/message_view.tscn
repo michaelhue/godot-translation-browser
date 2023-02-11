@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/scenes/message_view/message_view.gd" type="Script" id=1]
 [ext_resource path="res://src/ui/icons/File.svg" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/ui/icons/Close.svg" type="Texture" id=4]
 [ext_resource path="res://src/ui/icons/Sort.svg" type="Texture" id=5]
 [ext_resource path="res://src/scenes/message_view/message_view_state.gd" type="Script" id=6]
+[ext_resource path="res://src/controls/file_line_edit.gd" type="Script" id=7]
 [ext_resource path="res://src/ui/icons/Reload.svg" type="Texture" id=8]
 [ext_resource path="res://src/controls/item_list_navigator.gd" type="Script" id=9]
 
@@ -37,7 +38,7 @@ filters = PoolStringArray( "*.pot ; Portable Object Template" )
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 1115.0
-margin_bottom = 795.0
+margin_bottom = 715.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -63,11 +64,13 @@ margin_right = 1046.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_type_variation = "FileLineEdit"
 text = "res://template.pot"
 editable = false
 virtual_keyboard_enabled = false
 caret_blink = true
 caret_blink_speed = 0.5
+script = ExtResource( 7 )
 
 [node name="ReloadButton" type="ToolButton" parent="Layout/PathRow"]
 unique_name_in_owner = true
@@ -131,7 +134,7 @@ items = [ "Unsorted", null, 2, true, false, 0, 0, null, "", false, "Sort Ascendi
 unique_name_in_owner = true
 margin_top = 97.0
 margin_right = 1110.0
-margin_bottom = 769.0
+margin_bottom = 689.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 allow_reselect = true
@@ -144,9 +147,9 @@ prev_action = "message_prev"
 
 [node name="StatusLabel" type="Label" parent="Layout"]
 unique_name_in_owner = true
-margin_top = 773.0
+margin_top = 693.0
 margin_right = 1110.0
-margin_bottom = 790.0
+margin_bottom = 710.0
 theme_type_variation = "StatusBar"
 text = "0 messages"
 valign = 1

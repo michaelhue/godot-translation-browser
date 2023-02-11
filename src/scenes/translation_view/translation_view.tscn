@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/scenes/translation_view/translation_view.gd" type="Script" id=1]
 [ext_resource path="res://src/scenes/message_text/message_text.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/ui/icons/Close.svg" type="Texture" id=4]
 [ext_resource path="res://src/ui/icons/Reload.svg" type="Texture" id=5]
 [ext_resource path="res://src/scenes/view_label/view_label.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/controls/file_line_edit.gd" type="Script" id=7]
 
 [node name="TranslationView" type="PanelContainer"]
 anchor_right = 1.0
@@ -60,12 +61,14 @@ margin_right = 401.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_type_variation = "FileLineEdit"
 editable = false
 virtual_keyboard_enabled = false
 clear_button_enabled = true
 placeholder_text = "No source for locale"
 caret_blink = true
 caret_blink_speed = 0.5
+script = ExtResource( 7 )
 
 [node name="SourcesButton" type="MenuButton" parent="Layout/ToolbarContainer/PathContainer"]
 unique_name_in_owner = true
