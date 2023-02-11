@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://src/ui/icons/ExternalLink.svg" type="Texture" id=1]
 [ext_resource path="res://src/scenes/message_text/message_text.gd" type="Script" id=2]
 
 [node name="MessageText" type="TextEdit"]
@@ -18,3 +19,10 @@ middle_mouse_paste_enabled = false
 smooth_scrolling = true
 wrap_enabled = true
 script = ExtResource( 2 )
+
+[node name="TranslateMenu" type="PopupMenu" parent="."]
+margin_right = 16.0
+margin_bottom = 16.0
+items = [ "DeepL", ExtResource( 1 ), 0, false, false, 1002, 0, null, "", false, "Google", ExtResource( 1 ), 0, false, false, 1001, 0, null, "", false, "Bing", ExtResource( 1 ), 0, false, false, 1003, 0, null, "", false ]
+
+[connection signal="id_pressed" from="TranslateMenu" to="." method="_on_translate_menu_id_pressed"]
