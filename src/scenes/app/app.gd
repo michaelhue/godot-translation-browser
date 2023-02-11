@@ -15,6 +15,11 @@ func _notification(type: int) -> void:
 			Engine.set_target_fps(0)
 
 
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.is_action_pressed("app_reset"):
+		_reset()
+
+
 func setup_window() -> void:
 	OS.set_min_window_size(MIN_WINDOW_SIZE)
 
@@ -28,3 +33,8 @@ func setup_window() -> void:
 
 func _on_screen_resized() -> void:
 	AppState.set_window_size(OS.window_size)
+
+
+func _reset() -> void:
+	StateManager.clear()
+	get_tree().reload_current_scene()

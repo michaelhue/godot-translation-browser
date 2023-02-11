@@ -61,3 +61,9 @@ func persist_state(state: State) -> void:
 func save() -> void:
 	config_file.save(PATH)
 	emit_signal("saved")
+
+
+## Clear the config file contents.
+func clear() -> void:
+	config_file.clear()
+	save()
