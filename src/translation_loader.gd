@@ -24,7 +24,7 @@ const META_SOURCE_TYPE := "source_type"
 ## [signal]loaded[/signal]. Adds two metadata entries [const META_SOURCE_FILE]
 ## and [const META_SOURCE_TYPE].
 func load_resource(path: String) -> int:
-	var res: Translation = ResourceLoader.load(path, "Translation")
+	var res: Translation = ResourceLoader.load(path, "Translation", true)
 
 	if not res:
 		return ERR_FILE_UNRECOGNIZED

@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/scenes/locale_view/locale_view_state.gd"
 }, {
+"base": "State",
+"class": "MainWindowState",
+"language": "GDScript",
+"path": "res://src/scenes/main_window/main_window_state.gd"
+}, {
 "base": "Object",
 "class": "MessageLoader",
 "language": "GDScript",
@@ -58,6 +63,7 @@ _global_script_class_icons={
 "Analyzer": "",
 "ItemListNavigator": "",
 "LocaleViewState": "",
+"MainWindowState": "",
 "MessageLoader": "",
 "MessageViewState": "",
 "State": "",
