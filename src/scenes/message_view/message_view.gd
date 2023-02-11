@@ -121,7 +121,7 @@ func _on_active_messages_changed() -> void:
 
 	status_label.text = "%d messages" % state.active_messages.size()
 
-	if state.active_messages != state.messages:
+	if state.active_messages.size() != state.messages.size():
 		status_label.text += " (%d total)" % state.messages.size()
 
 	# If the active list of messages does not include the current message_id,

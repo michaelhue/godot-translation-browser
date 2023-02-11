@@ -132,7 +132,7 @@ func _update_items() -> void:
 
 	stats_label.text = "%d locales" % state.active_locales.size()
 
-	if state.active_locales != state.locales:
+	if state.active_locales.size() != state.locales.size():
 		stats_label.text +=  " (%d total)" % state.locales.size()
 
 	select_locale(AppState.locale)
