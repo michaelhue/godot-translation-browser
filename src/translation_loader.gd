@@ -19,16 +19,31 @@ const META_SOURCE_FILE := "source_file"
 const META_SOURCE_TYPE := "source_type"
 
 
-func get_type(path: String) -> int:
-	match path.get_extension():
-		EXT_PO:
-			return Type.PO
-		EXT_TRANSLATION:
-			return Type.TRANSLATION
-		_:
-			return Type.UNKNOWN
+## Load a resource as [Translation] from the given path. Returns OK if
+## [code]path[/code] is a valid [Translation] resource and emits it via
+## [signal]loaded[/signal]. Adds two metadata entries [const META_SOURCE_FILE]
+## and [const META_SOURCE_TYPE].
+func load_resource(path: String) -> int:
+	var res: Translation = ResourceLoader.load(path, "Translation")
+
+	if not res:
+		return ERR_FILE_UNRECOGNIZED
+
+	if not res is Translation:
+		return ERR_INVALID_DATA
+
+	var type := get_type(path)
+
+	res.set_meta(META_SOURCE_FILE, path)
+	res.set_meta(META_SOURCE_TYPE, type)
+
+	emit_signal("loaded", res)
+
+	return OK
 
 
+## Load all given files and directories. Returns OK if at least one valid
+## [Translation] resource was loaded.
 func load_all(paths: PoolStringArray) -> int:
 	var dir := Directory.new()
 	var errors := PoolIntArray()
@@ -49,6 +64,7 @@ func load_all(paths: PoolStringArray) -> int:
 	return OK
 
 
+## Load a single file. Returns OK if the file is a valid [Translation] resource.
 func load_file(path: String) -> int:
 	if get_type(path) == Type.UNKNOWN:
 		return ERR_FILE_UNRECOGNIZED
@@ -56,6 +72,8 @@ func load_file(path: String) -> int:
 	return load_resource(path)
 
 
+## Load multiple files. Returns OK if at least one file is a valid [Translation]
+## resource.
 func load_files(paths: Array) -> int:
 	var errors := PoolIntArray()
 
@@ -69,6 +87,8 @@ func load_files(paths: Array) -> int:
 	return OK
 
 
+## Load all files in a directory. Returns OK if at least one valid [Translation]
+## resource was loaded.
 func load_dir(path: String) -> int:
 	var dir := Directory.new()
 	var error := dir.open(path)
@@ -93,20 +113,12 @@ func load_dir(path: String) -> int:
 	return load_files(files)
 
 
-func load_resource(path: String) -> int:
-	var res: Translation = ResourceLoader.load(path, "Translation")
-
-	if not res:
-		return ERR_FILE_UNRECOGNIZED
-
-	if not res is Translation:
-		return ERR_INVALID_DATA
-
-	var type := get_type(path)
-
-	res.set_meta(META_SOURCE_FILE, path)
-	res.set_meta(META_SOURCE_TYPE, type)
-
-	emit_signal("loaded", res)
-
-	return OK
+## Get the assumed [enum Type] of a file path based on the extension.
+func get_type(path: String) -> int:
+	match path.get_extension():
+		EXT_PO:
+			return Type.PO
+		EXT_TRANSLATION:
+			return Type.TRANSLATION
+		_:
+			return Type.UNKNOWN
