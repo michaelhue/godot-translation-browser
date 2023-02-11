@@ -53,9 +53,9 @@ func get_persisted_properties() -> Array:
 ## Update persisted properties with the [StateManager].
 func persist() -> void:
 	if not get_persisted_properties().empty():
-		_state_manager().call_deferred("save_state", self)
+		_state_manager().call_deferred("persist_state", self)
 
 
-## Registers the given [code]method[/code] as a handler for [signal changed] signals.
-func notify(target: Object, method: String) -> void:
-	connect("changed", target, method, [], Object.CONNECT_DEFERRED)
+## Shortcut for registering a [signal changed] signal listener.
+func watch(target: Object, method: String, binds := [], flags := 0) -> void:
+	connect("changed", target, method, binds, flags)

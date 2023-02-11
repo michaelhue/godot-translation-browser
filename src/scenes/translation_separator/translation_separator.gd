@@ -13,9 +13,9 @@ onready var analyzer_button := get_node("%AnalyzerButton") as Button
 
 
 func _ready() -> void:
-	AppState.notify(self, "_on_app_state_changed")
-	state_a.notify(self, "_on_state_changed")
-	state_b.notify(self, "_on_state_changed")
+	AppState.watch(self, "_on_app_state_changed")
+	state_a.watch(self, "_on_state_changed")
+	state_b.watch(self, "_on_state_changed")
 
 	set_visible(false)
 

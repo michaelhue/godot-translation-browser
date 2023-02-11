@@ -39,7 +39,7 @@ func _ready() -> void:
 	analyzer.connect("progress", self, "_on_analyzer_progress")
 	analyzer.connect("result", self, "_on_analyzer_result")
 
-	AppState.notify(self, "_on_app_state_changed")
+	AppState.watch(self, "_on_app_state_changed")
 
 	manager_a.connect("updated", self, "_on_manager_updated")
 	manager_b.connect("updated", self, "_on_manager_updated")

@@ -25,7 +25,7 @@ func _init() -> void:
 func _ready() -> void:
 	loader.connect("loaded", self, "_on_messages_loaded")
 
-	AppState.notify(self, "_on_app_state_changed")
+	AppState.watch(self, "_on_app_state_changed")
 
 	path_row.visible = false
 	filter_input.editable = false

@@ -29,8 +29,8 @@ onready var stats_label := get_node("%StatsLabel") as Label
 
 
 func _ready() -> void:
-	AppState.notify(self, "_on_app_state_changed")
-	state.notify(self, "_on_state_changed")
+	AppState.watch(self, "_on_app_state_changed")
+	state.watch(self, "_on_state_changed")
 
 	view_label.set_label_text(label)
 	view_label.set_label_color(label_color)

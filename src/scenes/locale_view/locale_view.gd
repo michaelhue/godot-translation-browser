@@ -18,7 +18,7 @@ onready var stats_label := get_node("%StatsLabel") as Label
 
 
 func _ready() -> void:
-	AppState.notify(self, "_on_app_state_changed")
+	AppState.watch(self, "_on_app_state_changed")
 
 	manager_a.connect("updated", self, "_on_manager_update", [], CONNECT_DEFERRED)
 	manager_b.connect("updated", self, "_on_manager_update", [], CONNECT_DEFERRED)
