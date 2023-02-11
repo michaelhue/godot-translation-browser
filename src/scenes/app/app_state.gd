@@ -1,15 +1,10 @@
 extends State
 
 var window_size: Vector2
-var locale: String
-var fallback_locale: String
+var locale := "en"
+var fallback_locale := "en"
 var message_id: String
 var show_analyzer := false
-
-
-func _ready() -> void:
-	set_locale("en")
-	set_fallback_locale("en")
 
 
 func _persisted_properties() -> Array:
