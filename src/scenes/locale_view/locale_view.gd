@@ -103,8 +103,8 @@ func _update_locales() -> void:
 	state.set_active_locales(active)
 
 	option_button.set_item_disabled(Filter.SHARED, shared.empty())
-	option_button.set_item_disabled(Filter.A, a.empty())
-	option_button.set_item_disabled(Filter.B, b.empty())
+	option_button.set_item_disabled(Filter.A, a.empty() or b.empty())
+	option_button.set_item_disabled(Filter.B, b.empty() or b.empty())
 
 	if option_button.is_item_disabled(state.filter):
 		state.set_filter(Filter.ALL)
