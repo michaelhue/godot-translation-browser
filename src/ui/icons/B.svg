@@ -1,1 +1,10 @@
-<svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="m0 0h16v16h-16z" fill="none"/><circle cx="4" cy="4" fill="#fc9c9c" r="4" transform="matrix(-1 0 0 -1 12 12)"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <rect id="ArtBoard1" x="0" y="0" width="16" height="16" style="fill:none;"/>
+    <g id="ArtBoard11" serif:id="ArtBoard1">
+        <g transform="matrix(1,0,0,1,4,4)">
+            <path d="M2,0L6,0C7.105,0 8,0.895 8,2L8,6C8,7.105 7.105,8 6,8L2,8C0.895,8 0,7.105 0,6L0,2C0,0.895 0.895,0 2,0Z" style="fill:rgb(252,156,156);"/>
+        </g>
+    </g>
+</svg>
